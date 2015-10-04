@@ -37,6 +37,21 @@ class MailMasterAPI {
         $this->apiKey = $apiKey;
     }
 
+    /**
+     * Feliratkozás.
+     * Címadatok küldése a címlistára. Az 'email' mező megadása kötelező
+     * a feliratkozás megadásához. A rekord a feliratkozáskor aktív.
+     *
+     * <code>
+     *   $mm->subscribe(['email' => 'foo@company.com']);
+     *   $mm->subscribe([
+     *      'email' => 'foo@company.com',
+     *      'name' => 'Csepregi Balázs',
+     *   ]);
+     * </code>
+     * @param array név-érték párok.
+     * @return int A rekord azonosítója, hiba esetén: -1 - létező emailcím, -2 - hibás email, 0 - egyéb hiba, NULL - hibás művelet.
+     */
     public function subscribe($data){
         $url = 'subscribe/' . $this->listID . '/form/' . $this->formID;
         return $this->sendRequest($url, $data);
@@ -49,25 +64,16 @@ class MailMasterAPI {
                 'auth' => [$this->apiUser, $this->apiKey]
             ]);
             /** @var Response $respose */
-            $respose = $client->request($method, $url, $data);
-            var_dump($respose->getBody()->read(1000));exit;
-            if($respose->getStatusCode() == self::STATUS_OK){
-                var_dump($respose->getBody());exit;
-                return true;
-            }else{
-                switch($respose->getBody()){
-                    case self::ERROR_CODE_UNKNOWN:
-                        break;
-                    case self::ERROR_CODE_EXISTS:
-                        break;
-                    case self::ERROR_CODE_EMAIL:
-                        break;
-                }
-                var_dump($respose->getBody());
-                exit;
+            $respose = $client->request($method, $url, [
+                'body' => json_encode($data),
+            ]);
+            if($respose->getStatusCode() != self::STATUS_OK){
+                // set error
             }
+
+            return (int)$respose->getBody()->getContents();
         }catch (\Exception $e){
-            VarDumper::dump($e, 10, 1);exit;
+            return false;
         }
     }
 
