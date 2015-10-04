@@ -23,10 +23,8 @@
     "guzzlehttp/guzzle": "6.1.*"
   },
   autoload: {
-    "autoload": {
-      "psr-4": {
-        "albertborsos\\mailmaster\\": ""
-      }
+    "psr-4": {
+      "albertborsos\\mailmaster\\": ""
     }
   }
 }
