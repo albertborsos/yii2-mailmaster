@@ -17,7 +17,7 @@
   "require": {
     "php": ">=5.4.0",
     "yiisoft/yii2": ">=2.0.6",
-    "guzzlethttp/guzzle": "6.1.*"
+    "guzzlehttp/guzzle": "6.1.*"
   },
   "autoload": {
     "psr-4": {
