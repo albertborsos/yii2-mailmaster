@@ -37,7 +37,7 @@ class MailMasterAPI {
     }
 
     protected function sendRequest($url, $data, $method = 'POST'){
-
+        new Client
     }
 
 }
