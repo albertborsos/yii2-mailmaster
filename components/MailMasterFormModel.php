@@ -22,7 +22,7 @@ abstract class MailMasterFormModel extends Model {
     public function init()
     {
         parent::init();
-        $mm = \Yii::$app->components->mailmaster;
+        $mm = \Yii::$app->mailmaster;
         $this->setListID(ArrayHelper::getValue($mm, 'forms.' . $this->formReplaceID . '.listID'));
         $this->setFormID(ArrayHelper::getValue($mm, 'forms.' . $this->formReplaceID . '.formID'));
     }

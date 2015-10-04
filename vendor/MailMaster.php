@@ -1,4 +1,5 @@
 <?php
+namespace albertborsos\mailmaster\vendor;
 /**
  * MailMaster REST API.
  * A MailMaster REST API egy részének példa megvalósítása. Az 
