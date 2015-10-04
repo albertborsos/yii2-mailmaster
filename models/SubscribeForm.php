@@ -3,6 +3,7 @@
 namespace albertborsos\mailmaster\models;
 
 use albertborsos\mailmaster\components\MailMasterFormModel;
+use albertborsos\mailmaster\MailMaster;
 use Yii;
 
 class SubscribeForm extends MailMasterFormModel{
@@ -12,6 +13,8 @@ class SubscribeForm extends MailMasterFormModel{
     public $email;
 
     public $view = '@vendor/albertborsos/yii2-mailmaster/views/subscribe';
+
+    public $formReplaceID = '[#subscribe#]';
 
     /**
      * @inheritdoc
@@ -39,14 +42,18 @@ class SubscribeForm extends MailMasterFormModel{
         ];
     }
 
-    /**
-     * Sends an email to the specified email address using the information collected by this model.
-     *
-     * @param  string  $email the target email address
-     * @return boolean whether the email was sent
-     */
     public function process()
     {
-        Yii::$app->getSession()->setFlash('success', '<h4>Sikeres feliratkozás!</h4>');
+        /** @var MailMaster $mmc */
+        $mmc = Yii::$app->mailmaster;
+        $mm = $mmc->factory($this->_listID, $this->_formID);
+
+        $response = $mm->subscribe([
+            'email' => $this->email,
+            'mssys_firstname' => $this->nameFirst,
+            'mssys_lastname' => $this->nameLast,
+        ]);
+
+        $this->processResponse($response);
     }
 } 
