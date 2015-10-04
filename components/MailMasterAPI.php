@@ -6,8 +6,10 @@
  * Time: 12:02
  */
 
-namespace albertborsos\mailmaster;
+namespace albertborsos\mailmaster\components;
 
+
+use GuzzleHttp\Client;
 
 class MailMasterAPI {
 
@@ -37,7 +39,10 @@ class MailMasterAPI {
     }
 
     protected function sendRequest($url, $data, $method = 'POST'){
-        new Client
+        $client = new Client();
+        $response = $client->request($method, $url, $data);
+
+        var_dump($response);exit;
     }
 
 }

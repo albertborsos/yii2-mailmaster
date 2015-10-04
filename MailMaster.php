@@ -6,15 +6,17 @@
  * Time: 11:48
  */
 
-namespace albertborsos\mailmaster\components;
+namespace albertborsos\mailmaster;
 
-use albertborsos\mailmaster\MailMasterAPI;
+use albertborsos\mailmaster\components\MailMasterAPI;
 use yii\base\Component;
 
 class MailMaster extends Component{
 
     public $apiUser;
     public $apiKey;
+
+    public $forms;
 
     /**
      * @param $listID
