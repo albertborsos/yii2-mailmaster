@@ -1,0 +1,32 @@
+{
+  name: "albertborsos/yii2-mailmaster",
+  description: "MailMaster component for Yii2 projects.",
+  type: "yii2-component, yii2-extension, library",
+  keywords: [
+    "yii2",
+    "yii2-component",
+    "yii2-extension",
+  ],
+  homepage: "https://github.com/albertborsos/yii2-mailmaster",
+  license: "BSD-3-Clause",
+  authors: [
+    {
+      name: "Albert Borsos",
+      email: "hello@borsosalbert.hu",
+    }
+  ],
+  support: {
+    issues: "https://github.com/albertborsos/yii2-mailmaster/issues"
+  },
+  require: {
+    "yiisoft/yii2": ">=2.0.6",
+    "guzzlehttp/guzzle": "6.1.*"
+  },
+  autoload: {
+    "autoload": {
+      "psr-4": {
+        "albertborsos\\mailmaster\\": ""
+      }
+    }
+  }
+}
